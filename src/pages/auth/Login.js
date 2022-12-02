@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Auth.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -9,8 +10,15 @@ const Login = () => {
         <form>
           <input type="text" placeholder="Email" required />
           <input type="password" placeholder="Password" required />
-          <button className="--btn">Login</button>
+          <button className="--btn --btn-primary">Login</button>
+          <div className={styles.links}>
+            <Link to="/reset">Reset Password</Link>
+          </div>
         </form>
+        <span className={styles.register}>
+          <p>Don't Have an Account?</p>
+          <Link to="/register">Register</Link>
+        </span>
       </div>
     </section>
   );
