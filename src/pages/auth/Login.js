@@ -2,33 +2,18 @@ import React from "react";
 import styles from "./Auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/config";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-
-  const loginUser = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        navigate("/");
-      })
-      .catch((error) => {
-        alert("login unsuccessful");
-      });
-  };
+  // const navigate = useNavigate();
 
   return (
     <section className={`container ${styles.auth}`}>
       <div className={styles.form}>
         <h2>Login</h2>
-        <form onSubmit={loginUser}>
+        <form>
           <input
             type="text"
             placeholder="Email"
