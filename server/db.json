@@ -1,0 +1,11 @@
+{
+  "computer": {
+    "id": 1,
+    "name": "intel",
+    "price": 1000,
+    "gpu": "3060",
+    "cpu": "I7",
+    "ram": "10000gb",
+    "motherboard": "Asus"
+  }
+}

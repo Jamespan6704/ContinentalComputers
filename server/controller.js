@@ -3,6 +3,12 @@ let computerId = 4;
 //REST METHODS
 //Get, Post, Delete, Push
 
+module.exports = {
+  getComputers: (req, res) => {
+    res.status(200).send(computers);
+  },
+};
+
 // module.exports = {
 //   getComputer: (req, res) => {
 //     res.status(200).send(computers);
