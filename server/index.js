@@ -2,9 +2,14 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { SERVER_PORT } = process.env;
-const { Computer } = require("./models/computer");
+const { Computers } = require("./models/computer");
 const { sequelize } = require("./util/database");
-const { getComputers } = require("./controller.js");
+const {
+  getComputers,
+  updateComputers,
+  addComputer,
+  deleteComputer
+} = require("./controller.js");
 
 const app = express();
 
@@ -12,6 +17,9 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/getComputers", getComputers);
+// app.put("/updateComputers", updateComputers);
+app.post("/addComputer", addComputer);
+app.delete("/deleteComputer/:id", deleteComputer)
 
 sequelize
   .sync()

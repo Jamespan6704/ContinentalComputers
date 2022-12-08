@@ -1,11 +1,57 @@
-let computers = require("./db.json");
-let computerId = 4;
 //REST METHODS
 //Get, Post, Delete, Push
 
+// require("dotenv").config();
+// const { CONNECTION_STRING } = process.env;
+// const Sequelize = require("sequelize");
+
+// const sequelize = new Sequelize(CONNECTION_STRING, {
+//   dialect: "postgres",
+//   dialectOptions: {
+//     ssl: {
+//       rejectUnauthorized: false,
+//     },
+//   },
+// });
+
+const { Computers } = require("./models/computer");
+
 module.exports = {
-  getComputers: (req, res) => {
+  getComputers: async (req, res) => {
+    const computers = await Computers.findAll({});
+    console.log(computers[0]);
     res.status(200).send(computers);
+  },
+  addComputer: async (req, res) => {
+    try {
+      const { name, price, gpu, cpu, ram, motherboard } = req.body;
+      await Computers.create({
+        name,
+        price,
+        gpu,
+        cpu,
+        ram,
+        motherboard,
+      });
+      res.sendStatus(200);
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+  },
+  deleteComputer: async (req, res) => {
+    try {
+      const { id } = req.params;
+      await Computers.destroy({
+        where: {
+          id: +id,
+        },
+      });
+      res.sendStatus(200);
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
   },
 };
 
@@ -32,17 +78,6 @@ module.exports = {
 
 //     computers.splice(index, 1);
 
-//     res.status(200).send(computers);
-//   },
-//   updateData: (req, res) => {
-//     const index = computers.findIndex((el) => el.id === +req.params.id);
-//     const { part } = req.body;
-
-//     if (part) {
-//       computers[index].specifications += `, ${part}`;
-//     } else {
-//       console.log("Error, this is not a part");
-//     }
 //     res.status(200).send(computers);
 //   },
 // };

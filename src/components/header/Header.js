@@ -31,6 +31,8 @@ const Header = () => {
             </span>
             <span className={styles.cart}>
               <Link to="/cart">Cart</Link>
+              <Link to="/computers">Computers</Link>
+              <Link to="/addComputer">addComputers</Link>
             </span>
           </div>
         </nav>
