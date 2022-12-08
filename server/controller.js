@@ -53,6 +53,16 @@ module.exports = {
       res.sendStatus(500);
     }
   },
+  //  addUser = async (req, res) => {
+  //   try{
+  //   const { userId, password, confirmPassword } = req.body;
+  //   await Users.create({
+  //     userId,
+  //     password,
+  //     confirmPassword
+  //   })
+  // }
+  //  }
 };
 
 // module.exports = {

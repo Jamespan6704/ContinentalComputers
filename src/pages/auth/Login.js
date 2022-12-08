@@ -2,12 +2,23 @@ import React from "react";
 import styles from "./Auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const navigate = useNavigate();
+  const getUser = () => {
+    axios
+      .get("/getUser")
+      .then((res) => {
+        setEmail(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <section className={`container ${styles.auth}`}>

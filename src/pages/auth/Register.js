@@ -2,13 +2,26 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from "./Auth.css";
+import axios from "axios";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // const navigate = useNavigate();
+  const addNewUser = (e) => {
+    e.preventDefault();
+    const body = { email, password, confirmPassword };
+
+    axios
+      .post("/addUser", body)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const registerUser = (e) => {
     e.preventDefault();
